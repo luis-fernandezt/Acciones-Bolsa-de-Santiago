@@ -1,8 +1,8 @@
-# Principales Stocks de precios de la Bolsa de Santiago
+## Principales Stocks de precios de la Bolsa de Santiago
 
 En este ejercicio se observaran las principales acciones del mercado de La Bolsa Bolsa de Santiago. El siguiente código en lenguaje **R** permitirá obtener los precios de los instrumentos en sus diferentes etapas de transacción ("Open", "Hight", "Low", "Close"), para posteriormente visualizar dichos resultados en un periodo de tiempo definido.
 
-### Librerías necesarias.
+#### Librerías necesarias.
 
 ```{r librerias, include=TRUE, echo=FALSE}
 library(quantmod)
@@ -13,14 +13,14 @@ library(xts)
 library(htmlwidgets)
 ```
 
-### Definimos el periodo de tiempo que analizaremos. 
+#### Definimos el periodo de tiempo que analizaremos. 
 
 ```{r time, include=TRUE, echo=FALSE}
 start <- as.Date("2014-01-01")
 end <- as.Date("2020-05-05")
 ```
 
-### Descargamos los stock de nuestro interés. En este caso algunos de la banca y retail.
+#### Descargamos los stock de nuestro interés. En este caso algunos de la banca y retail.
 
 ```{r acciones, echo=FALSE}
 getSymbols("BCH", src = "yahoo", from = start, to = end)
@@ -33,7 +33,7 @@ getSymbols("FORUS.SN", src = "yahoo", from = start, to = end)
 getSymbols("SMU.SN", src = "yahoo", from = start, to = end) 
 ```
 
-### Extraemos los precios de cierre y creamos un data set para cada grupo.
+#### Extraemos los precios de cierre y creamos un data set para cada grupo.
 
 ```{r close,  echo=FALSE}
 BCH.C <- BCH$BCH.Close
@@ -51,9 +51,9 @@ banca <- cbind(BCH.C, BSANTANDER, ITCB)
 retail <- cbind(CENCOSUD, FALABELLA, FORUS, SMU)
 ```
 
-### Luego ploteamos los datos en dos graficos diferentes, uno por cada grupo. Se indica un periodo de tiempo acotado en la escala de rangos, para un análisis en detalle.
+#### Luego ploteamos los datos en dos graficos diferentes, uno por cada grupo. Se indica un periodo de tiempo acotado en la escala de rangos, para un análisis en detalle.
 
-## Acciones de la banca.
+### Acciones de la banca.
 
 ```{r dyg_banca, echo= True}
 dyg_banca <- 
@@ -71,7 +71,7 @@ dyg_banca
 ```
 ![banca](https://raw.githubusercontent.com/luis-fernandezt/Acciones-Bolsa-de-Santiago/master/html/banca.png)
 
-## Acciones del retail.
+### Acciones del retail.
 
 ```{r dyg_retail, echo= True}
 dyg_retail <- 
@@ -90,7 +90,7 @@ dyg_retail
 ```
 ![retail](https://raw.githubusercontent.com/luis-fernandezt/Acciones-Bolsa-de-Santiago/master/html/retail.png)
 
-### Guardamos cada gráfico en un archivo html.
+#### Guardamos cada gráfico en un archivo html.
 
 ```{r saveWidget, echo=FALSE}
 saveWidget(dyg_banca, 
@@ -102,11 +102,11 @@ saveWidget(dyg_retail,
            selfcontained = TRUE)
 ```
 
-### Grafico candlestick.
+#### Grafico candlestick.
 
 Opcionalmente se puede analizar de forma individual cada acción en un grafico Candlestick, por ejemplo a Forus y Banco de Chile. 
 
-## Acciones Forus
+### Acciones Forus
 
 ```{r FORUS_CDLSTK,  echo= True}
 FORUS_CDLSTK <- FORUS.SN[,c(1,2,3,4)]
@@ -124,7 +124,7 @@ cdlstk_Forus
 ```
 ![forus](https://raw.githubusercontent.com/luis-fernandezt/Acciones-Bolsa-de-Santiago/master/html/forus.png)
 
-## Acciones Banco de Chile
+### Acciones Banco de Chile
 
 ```{r BCH_CDLSTK, echo= True}
 BCH_CDLSTK <- BCH[,c(1,2,3,4)]
@@ -142,7 +142,7 @@ cdlstk_bch
 ```
 ![bch](https://raw.githubusercontent.com/luis-fernandezt/Acciones-Bolsa-de-Santiago/master/html/bch.png)
 
-### Guardamos cada gráfico en un archivo html.
+#### Guardamos cada gráfico en un archivo html.
 
 ```{r save, echo=FALSE}
 saveWidget(cdlstk_Forus, 
