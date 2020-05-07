@@ -67,20 +67,18 @@ dyg_retail
 
 ### Guardamos cada gráfico en un archivo html.
 saveWidget(dyg_banca, 
-           "./html/stock_dy_banca.html",
+           "./stock_dy_banca.html",
            selfcontained = TRUE)
 
 saveWidget(dyg_retail, 
-           "./html/stock_dy_retail.html",
+           "./stock_dy_retail.html",
            selfcontained = TRUE)
 
 ### Grafico candlestick.
-
-Opcionalmente se puede analizar de forma individual cada acción en un grafico Candlestick, por ejemplo a Forus y Banco de Chile. 
+# Opcionalmente se puede analizar de forma individual cada acción en un grafico Candlestick, 
+#por ejemplo a Forus y Banco de Chile. 
 
 ## Acciones Forus
-
-```{r FORUS_CDLSTK,  echo= True}
 FORUS_CDLSTK <- FORUS.SN[,c(1,2,3,4)]
 names(FORUS_CDLSTK) <- c("Open", "Hight", "Low", "Close")
 
@@ -93,11 +91,8 @@ cdlstk_Forus <-
   dyCandlestick()
 
 cdlstk_Forus
-```
 
 ## Acciones Banco de Chile
-
-```{r BCH_CDLSTK, echo= True}
 BCH_CDLSTK <- BCH[,c(1,2,3,4)]
 names(BCH_CDLSTK) <- c("Open", "Hight", "Low", "Close")
 
@@ -110,16 +105,12 @@ cdlstk_bch <-
   dyCandlestick()
 
 cdlstk_bch
-```
 
 ### Guardamos cada gráfico en un archivo html.
-
-```{r save, echo=FALSE}
 saveWidget(cdlstk_Forus, 
-           ".//forus.html",
+           "./forus.html",
            selfcontained = TRUE)
 
 saveWidget(cdlstk_bch, 
-           ".//bch.html",
+           "./bch.html",
            selfcontained = TRUE)
-```
